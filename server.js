@@ -23,6 +23,10 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
+// Routes
+app.use('/', require('./routes/index'));
+app.use('/users', require('./routes/users'));
+
 mongoose
   .connect(
     db,
