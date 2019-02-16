@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <div className="App">
       <NavBar auth={this.state.isauthenticated}/>
-      <ModalExample/>
+      {/* <ModalExample auth={this.state.isauthenticated}/> */}
        <h1>Hello World</h1>
       </div>
     );
