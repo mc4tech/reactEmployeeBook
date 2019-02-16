@@ -20,17 +20,13 @@ const ModalExample = (props) => {
   //   }));
   // }
 
-    console.log(props);
+    // console.log(props);
     return (
       <div>
-        {/* <Form inline onSubmit={(e) => e.preventDefault()}>
-          <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
-        </Form> */}
-        {/* <NavBar toggleModal={this.toggle} auth={this.props.auth}/> */}
         <Modal isOpen={props.modal} toggle={props.toggleModal} className={props.className}>
           <ModalHeader toggle={props.toggleModal}>Modal title</ModalHeader>
           <ModalBody>
-            <Form toggleModal={props.toggleModal} preventDefault={props.preventDefault}/>
+            <Form toggleModal={props.toggleModal} preventDefault={props.preventDefault} user={props.user} handleForm={props.handleForm} onChange={props.onChange}/>
           </ModalBody>
           {/* <ModalFooter>
             <Button color="primary" onClick={props.toggleModal}>Do Something</Button>{' '}

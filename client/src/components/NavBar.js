@@ -15,7 +15,9 @@ class NavBar extends Component {
     //     isOpen: false
     // }
     constructor(props) {
+        console.log('constr props', props);
         super(props);
+        console.log('superrrr',super(props));
         this.state = {
           modal: false,
           isOpen: false
@@ -24,15 +26,21 @@ class NavBar extends Component {
         this.toggleModal = this.toggleModal.bind(this);
       }
     
-      toggleModal(event) {
-          event.preventDefault();
-          console.log('clicked modal')
+      toggleModal() {
         this.setState(prevState => ({
           modal: !prevState.modal
         }));
       }
     
-    
+    changeUser = (event) => {
+    const field = event.target.name;
+    const user = this.state.user;
+    user[field] = event.target.value;
+
+    this.setState({
+      user
+    });
+  }
 
     toggleNav = (event) => {
         event.preventDefault();
@@ -40,6 +48,20 @@ class NavBar extends Component {
             isOpen: !this.state.isOpen
         });
     }
+    
+    handleForm = (props) => {
+        console.log('reguserr');
+        const {name, email, password, confirmPassword} = this.props.user;
+        if(name !== '' && email !== '' && password !== '' && confirmPassword !== '' ) {
+            this.props.newUser();
+            this.toggleModal();
+            console.log('no empty fields');
+        } else {
+            this.toggleModal();
+            console.log('empty fields');
+        }
+    }
+    
     formPreventDefault(e) { 
         e.preventDefault();
       }
@@ -69,7 +91,7 @@ class NavBar extends Component {
                         </Nav>
                     </Collapse>
                 </Container>
-                <ModalExample toggleModal={this.toggleModal} preventDefault={this.formPreventDefault} modal={this.state.modal}/>
+                <ModalExample toggleModal={this.toggleModal} handleForm={this.handleForm} preventDefault={this.formPreventDefault} modal={this.state.modal} user={this.props.user} onChange={this.props.onChange}/>
             </Navbar>
         )
     }

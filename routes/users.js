@@ -8,16 +8,16 @@ const passport = require('passport');
 const User = require('../models/User');
 
 router.post('/register', (req, res) => {
-  const { name, email, password, password2 } = req.body;
+  const { name, email, password, confirmPassword } = req.body;
   const errors = [];
-
+  console.log('posting...');
   // check required fields
-  if (!name || !email || !password || !password2) {
+  if (!name || !email || !password || !confirmPassword) {
     errors.push({ msg: 'Please fill in all fields' });
   }
 
   // Check passwords match
-  if (password !== password2) {
+  if (password !== confirmPassword) {
     errors.push({ msg: ' Passwords do not match' });
   }
 
@@ -32,7 +32,7 @@ router.post('/register', (req, res) => {
       name,
       email,
       password,
-      password2
+      confirmPassword
     });
   } else {
     // Validation passed
@@ -46,7 +46,7 @@ router.post('/register', (req, res) => {
           name,
           email,
           password,
-          password2
+          confirmPassword
         });
       } else {
         const newUser = new User({
