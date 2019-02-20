@@ -22,7 +22,7 @@ class App extends Component {
     const field = event.target.name;
     const user = this.state.user;
     user[field] = event.target.value;
-
+    console.log('change user', user);
     this.setState({
       user
     });
@@ -31,10 +31,10 @@ class App extends Component {
   newUser = () => {
     console.log('posting...')
     const user = this.state.user;
-    console.log('user : ', user);
     axios.post('/users/register', user)
       .then(res => {
-        console.log('posted', res);    
+        console.log(res);
+        console.log('posted', res.data);    
     }).catch(err => console.log(err));
   }
 

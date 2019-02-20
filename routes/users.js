@@ -37,7 +37,6 @@ router.post('/register', (req, res) => {
   } else {
     // Validation passed
     User.findOne({ email }).then(user => {
-      console.log(user);
       if (user) {
         // user exists
         errors.push({ msg: 'Email is already registered' });

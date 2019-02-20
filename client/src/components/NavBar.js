@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import App from '../App';
 import {
     Collapse,
     Navbar,
@@ -10,10 +11,8 @@ import {
     Container
 } from 'reactstrap';
 import ModalExample from './registerModal';
-class NavBar extends Component {
-    // state = {
-    //     isOpen: false
-    // }
+
+class NavBar extends App {
     constructor(props) {
         console.log('constr props', props);
         super(props);
@@ -26,22 +25,26 @@ class NavBar extends Component {
         this.toggleModal = this.toggleModal.bind(this);
       }
     
-      toggleModal() {
+    emptyUser() {
+        console.log('emptied');
+        this.setState({
+            user: {
+                name: '',
+                email: '',
+                password: '',
+                confirmPassword: ''
+              }
+        });
+    }
+
+    toggleModal() {
+        console.log('toggled');
         this.setState(prevState => ({
-          modal: !prevState.modal
+            modal: !prevState.modal
         }));
-      }
-    
-    changeUser = (event) => {
-    const field = event.target.name;
-    const user = this.state.user;
-    user[field] = event.target.value;
+    }
 
-    this.setState({
-      user
-    });
-  }
-
+   
     toggleNav = (event) => {
         event.preventDefault();
         this.setState({
@@ -55,7 +58,6 @@ class NavBar extends Component {
         if(name !== '' && email !== '' && password !== '' && confirmPassword !== '' ) {
             this.props.newUser();
             this.toggleModal();
-            console.log('no empty fields');
         } else {
             this.toggleModal();
             console.log('empty fields');
