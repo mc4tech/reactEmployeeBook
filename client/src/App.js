@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from './components/NavBar';
-import ModalExample from './components/registerModal';
+// import ModalExample from './components/registerModal';
 import * as axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
@@ -41,7 +41,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <NavBar auth={this.state.isauthenticated} user={this.state.user} onChange={this.changeUser} newUser={this.newUser} />
+      <NavBar 
+        auth={this.state.isauthenticated} 
+        user={this.state.user} 
+        onChange={this.changeUser} 
+        newUser={this.newUser} 
+        />
       {/* <ModalExample auth={this.state.isauthenticated}/> */}
        <h1>Hello World</h1>
       </div>

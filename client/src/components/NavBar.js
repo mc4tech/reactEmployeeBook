@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import App from '../App';
 import {
     Collapse,
     Navbar,
@@ -12,7 +11,7 @@ import {
 } from 'reactstrap';
 import ModalExample from './registerModal';
 
-class NavBar extends App {
+class NavBar extends Component {
     constructor(props) {
         console.log('constr props', props);
         super(props);
